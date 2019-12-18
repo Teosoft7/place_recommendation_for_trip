@@ -43,7 +43,7 @@
                           <span class="text-rose russo">
                             <p>{{ places[i]['note'] }}</p>
                           </span> 
-                          <a href="{{ url_for('confirm', contentid=places[i]['contentid']) }}" 
+                          <a href="{{ url_for('confirm', origin_contentid=content_id, contentid=places[i]['contentid']) }}" 
                           class="btn btn-info btn-sm btn-round float-right russo">Confirm</a>  
                         </div>
                       </div>

@@ -1,18 +1,19 @@
 # my functions
 from functions import (get_place,
-                       get_shortest,)
+                       get_shortest,
+                       save_confirm)
 
 # import common libraries
 import pandas as pd
 from flask import Flask, request, render_template, url_for
 from pymongo import MongoClient
 
+# Database connection (to local mongo)
 connection = MongoClient(port=27017)
 db = connection['cp_seoul']
-app = Flask(__name__, static_url_path="")
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# Flask app initialize
+app = Flask(__name__, static_url_path="")
 
 @app.route('/')
 def index():
@@ -38,12 +39,13 @@ def detail():
 
     return render_template('detail.html', 
                             title=title,
+                            content_id=content_id,
                             places=places, 
                             count=len(places))
 
-
 @app.route('/confirm', methods=['GET'])
 def confirm():
+    origin_contentid = request.args.get('origin_contentid')
     content_id = request.args.get('contentid')
     ip_addr = None
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
@@ -51,11 +53,9 @@ def confirm():
     else:
         ip_addr = request.environ['HTTP_X_FORWARDED_FOR'] # if behind a proxy
 
-    print(content_id)
-    print(ip_addr)
-
+    # Save user reaction to db
+    save_confirm(db, origin_contentid, content_id, ip_addr)
     return render_template('confirm.html')
-
 
 @app.route('/about')
 def about():
