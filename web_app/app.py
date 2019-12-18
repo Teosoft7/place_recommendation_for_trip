@@ -89,9 +89,15 @@ def detail():
     # get shortest places
     title, places = get_shortest(content_id)
     print(content_id)
-    print(places)
 
     return render_template('detail.html', 
                             title=title,
                             places=places, 
                             count=len(places))
+
+@app.route('/confirm', methods=['GET'])
+def confirm():
+    content_id = request.args.get('contentid')
+    print(content_id)
+
+    return render_template('confirm.html')

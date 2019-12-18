@@ -12,7 +12,7 @@ def get_place(db, count=3):
 
     cursor = place_coll.find({'contenttypeid': '76',
     'overview': {"$regex": "^[\s\S]{0,}$"},
-    'firstimage': {'$ne': ''}})
+    'firstimage': {"$regex": "^[\s\S]{0,}$"}})
     
     places = [place for place in cursor]
 
