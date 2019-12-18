@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>            
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>Hit or Not - Prediction</title>
+
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+        <!--     Fonts and icons     -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+        <!-- CSS Files -->
+        <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+        <link rel="stylesheet" href="css/styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic|Open+Sans|Russo+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/dashboard/">
+        <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-1.2.0.min.css" type="text/css" />
+        <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.2.0.min.css" type="text/css" />
+        <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.2.0.min.css" type="text/css" />
+        
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.2.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.2.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.2.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-gl-1.2.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-1.2.0.min.js"></script>
+                    
+        <style>
+        </style>
+    </head>
+    <body>
+    <div class="container">     
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 border-bottom">
+              <h2 class="h3 russo">
+                <a href="javascript:history.back()"><i class='material-icons'>arrow_back</i></a>              
+                Because you select {{ title }} <br> probably like these places, Too!! </h2>
+            </div>
+          </div>
+
+        <div class="row">
+            <div class='col-md-12'>
+              <div class="row">
+                {% for i in range(0, count) %}
+                  <div class="col-md-4">
+                    <div class="card">
+                      <img src="{{ places[i]['firstimage'] }}"  
+                        class="card-img-top" alt="Card image cap" width="100%"> 
+                      <div class="card-body"><i class="material-icons">visibility</i>
+                        <h4 class="card-title kr-dh">{{ places[i]['title'] }}</h4>
+                        <div class="card-category">
+                          <span class="text-rose russo">
+                            <p>{{ places[i]['note'] }}</p>
+                          </span> 
+                          <a href="..." 
+                          class="btn btn-info btn-sm btn-round float-right russo">Confirm</a>  
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="stats">
+                          <i class="material-icons">date_range</i> {{ places[i]['modifiedtime'] }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>  
+      </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
