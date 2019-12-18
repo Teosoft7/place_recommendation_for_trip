@@ -45,14 +45,14 @@ def detail():
 @app.route('/confirm', methods=['GET'])
 def confirm():
     content_id = request.args.get('contentid')
+    ip_addr = None
+    if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+        ip_addr = request.environ['REMOTE_ADDR']
+    else:
+        ip_addr = request.environ['HTTP_X_FORWARDED_FOR'] # if behind a proxy
+
     print(content_id)
-
-    print(request.remote_addr)
-
-    # if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
-    #     print(request.environ['REMOTE_ADDR'])
-    # else:
-    #     print(request.environ['HTTP_X_FORWARDED_FOR']) # if behind a proxy
+    print(ip_addr)
 
     return render_template('confirm.html')
 
