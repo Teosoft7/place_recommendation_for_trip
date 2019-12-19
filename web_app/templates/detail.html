@@ -25,7 +25,9 @@
             <div class="col-md-12 border-bottom">
               <h2 class="h3 russo">
                 <a href="javascript:history.back()"><i class='material-icons'>arrow_back</i></a>              
-                Because you select {{ title }} <br> probably like these places, Too!! </h2>
+                Because you select {{ title }} 
+                <br> probably like these places, Too!! 
+              </h2>
             </div>
           </div>
 
@@ -43,8 +45,13 @@
                           <span class="text-rose russo">
                             <p>{{ places[i]['note'] }}</p>
                           </span> 
-                          <a href="{{ url_for('confirm', origin_contentid=content_id, contentid=places[i]['contentid']) }}" 
-                          class="btn btn-info btn-sm btn-round float-right russo">Confirm</a>  
+                          <span>
+                            <h5 class="text-info russo">Do you like this place?</h5>
+                            <a href="{{ url_for('answer', origin_contentid=content_id, contentid=places[i]['contentid'], answer='n') }}" 
+                            class="btn btn-danger btn-sm btn-round float-right russo">NO</a>  
+                            <a href="{{ url_for('answer', origin_contentid=content_id, contentid=places[i]['contentid'], answer='y') }}" 
+                            class="btn btn-info btn-sm btn-round float-right russo">YES</a>    
+                          </span>
                         </div>
                       </div>
                       <div class="card-footer">

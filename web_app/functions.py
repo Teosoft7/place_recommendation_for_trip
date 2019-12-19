@@ -81,7 +81,7 @@ def get_shortest(contentid, count=3):
     
     return title, result
     
-def save_confirm(db, origin_id, confirmed_id, ip_addr):
+def save_confirm(db, origin_id, confirmed_id, ip_addr, yes_no=1):
     """Save user confirmation to DB"""
 
     collection = db['confirmed']
@@ -92,6 +92,7 @@ def save_confirm(db, origin_id, confirmed_id, ip_addr):
         'user_ip': ip_addr,
         'origin_id': origin_id,
         'confirmed_id': confirmed_id,
+        'answer': yes_no, 
         'timestamp': timestamp
     }
 
