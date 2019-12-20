@@ -56,17 +56,20 @@ def get_shortest(contentid, count=3):
     X = vectors[index][0]
     Y = vectors[index][1]
     Z = vectors[index][2]
- 
+
+    # calculate the distances with the others
     distances = []
     for i, value in enumerate(vectors):
         distance = (abs(X - value[0]) + abs(Y - value[1]) + abs(Z - value[2]), i)
         distances.append(distance)
 
-    top5_similars = [i[1] for i in sorted(distances)[1:count + 1]]
+    # get top N similar places
+    topn_similars = [i[1] for i in sorted(distances)[1:count + 1]]
 
+    # make result list with new place dict
     result = []
     i = 0
-    for _, row in df.loc[top5_similars].iterrows():
+    for _, row in df.loc[topn_similars].iterrows():
         item = {
             'title': row['title'],
             'contentid': row['contentid'],
@@ -84,10 +87,13 @@ def get_shortest(contentid, count=3):
 def save_confirm(db, origin_id, confirmed_id, ip_addr, yes_no=1):
     """Save user confirmation to DB"""
 
+    # collection to save
     collection = db['confirmed']
 
+    # get current time
     timestamp = datetime.timestamp(datetime.now())
 
+    # set item
     item = {
         'user_ip': ip_addr,
         'origin_id': origin_id,
@@ -96,9 +102,6 @@ def save_confirm(db, origin_id, confirmed_id, ip_addr, yes_no=1):
         'timestamp': timestamp
     }
 
-    print(item)
+    # save item to mongodb
     collection.insert_one(item)
-
-
     
-
